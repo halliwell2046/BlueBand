@@ -1,0 +1,85 @@
+#root {
+    text-align: center;
+    background-image: url(./background-image.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+h3 {
+    font-family: 'Metal Mania', cursive;
+    text-shadow: 2px 2px 4px white;
+    color:black;
+    font-weight: bold;
+    font-size: 62px;
+    padding-left: 370px;
+}
+
+th {
+        font-family: 'Metal Mania', cursive;
+        text-shadow: 2px 2px 4px white;
+        color:black;
+        font-weight: bold;
+        font-size: 28px;
+}
+
+#table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td, #table th {
+border: 1px solid #ddd;
+padding: 8px;
+}
+
+#table td {
+    font-weight: bold;
+}
+
+#table tr:nth-child(even){background-color: #f2f2f2;}
+#table tr:nth-child(odd){background-color: #ddd;}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color:white;
+}
+
+.addbutton {
+    font-family: 'Metal Mania';
+      border-radius: 10px;
+      background-color: #509AE3;
+      color: #D0E3F1;
+      padding: 15px 30px 15px 30px;
+      box-shadow: 5px 10px 8px #888888;
+  }
+
+  .navhead-button {
+    font-family: 'Metal Mania';
+    border-radius: 10px;
+    background-color: #509AE3;
+    color: #D0E3F1;
+    padding: 15px 30px 15px 30px;
+    box-shadow: 5px 10px 8px #888888;
+    margin-left: 390px;
+    margin-bottom: 5px;
+    visibility: visible;
+
+}
+
+.mybutton {
+    font-family: 'Metal Mania';
+    border-radius: 10px;
+    background-color: #509AE3;
+    color: #D0E3F1;
+    padding: 15px 30px 15px 30px;
+    box-shadow: 5px 10px 8px #888888;
+    margin-left: 390px;
+    visibility: visible;
+    
+}

@@ -7,9 +7,12 @@ import {
   Nav,
   NavItem,
   Button
-} from 'reactstrap'; 
-
-
+} from 'reactstrap';
+import {
+  Route, 
+  Link,
+  Switch
+} from 'react-router-dom'
 
 
 const Sitebar = (props) => { 
@@ -18,15 +21,20 @@ const Sitebar = (props) => {
     let newIsOpen = !isOpen;
     setIsOpen(newIsOpen);
   }
+
+
+
     
   return ( 
     <Navbar color="faded" light expand="md">  
-      <NavbarBrand href="/">BandODex</NavbarBrand>
-      <NavbarToggler onClick={toggle}/>
+      <NavbarBrand className="navheader" >Band O Dex <p>Local music rolodex for venues and fans in Indiana</p></NavbarBrand>
+       <NavbarToggler onClick={toggle}/> 
       <Collapse isOpen={isOpen} navbar>
-        <Nav className="m1-auto" navbar>
+        <Nav className="m1-auto" navbar>y
+
           <NavItem>
-            <Button onClick={props.clearToken}>Outro</Button>
+          <Button className="navhead-button" onClick={props.clickLogout}>Outro</Button>
+          <Link to ="/fav" className="mybutton">My Artists</Link>
           </NavItem>
         </Nav>
       </Collapse>

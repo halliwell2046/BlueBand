@@ -9,7 +9,7 @@ const Login = (props) => {
     event.preventDefault();
     fetch('http://localhost:3000/auth/login',{
       method: 'POST',
-      body: JSON.stringify({user:{email, password: password}}),
+      body: JSON.stringify({user:{email: email, password: password}}),
       headers: new Headers({
         'Content-Type': 'application/json',
         'Authorization': props.token
@@ -18,8 +18,9 @@ const Login = (props) => {
       (response) => response.json()
     ) .then((data) => {
       console.log(data);
-      props.updateToken(data.sessionToken);
+      props.updateToken(data);
     })
+    .catch(err => console.log(err))
   }
  
   return(
@@ -27,17 +28,16 @@ const Login = (props) => {
       <h1>Login</h1>
       <Form onSubmit={handleSubmit}>
         <FormGroup>
-          <Label htmlFor="username">Email</Label>
-          <Input onChange={(e) => setUsername(e.target.value)} name="username" value={email} placeholder={"Email address is required"}/> 
+          <Label noValidate action="#" method="get" htmlFor="username" className="header">Email</Label>
+          <Input onChange={(e) => { setUsername(e.target.value)}}  name="username" value={email} type="text" placeholder={"Email address is required"}/> 
         </FormGroup>
         <FormGroup>
-          <Label htmlFor="password">Password</Label>
-          <Input onChange={(e) => setPassword(e.target.value)} name="password" value={password} placeholder={"enter password"}/>
+          <Label htmlFor="password" className="header">Password</Label>
+          <Input onChange={(e) => { setPassword(e.target.value)}} name="password" value={password} type="password" placeholder={"enter password"}/>
         </FormGroup>
-        <Button type="submit">Let's Rock</Button>
+        <Button className="button" type="submit">Let's Rock</Button>
       </Form>
     </div>
   )
   }
-
 export default Login;

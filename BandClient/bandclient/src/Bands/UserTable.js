@@ -1,59 +1,80 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Table, Button} from 'reactstrap';
+import './UserTable.css';
 
 const UserTable = (props) => {
-    const deleteBand = (band) => {
-        fetch(`http://localhost:3000/search/getall/${band.id}`, {
-            method: 'DELETE',
-            headers: new Headers({
-                'Content-Type': 'application/json',
-                'Authorization' : props.token
-            })
-        })
-        .then(() => props.fetchBands())
-    }
+    // const CreateFav = (band) => {
+    //     fetch(`http://localhost:3000/search/getall/${band.id}`, {
+    //         method: 'GET',
+    //         headers: new Headers({
+    //             'Content-Type': 'application/json',
+    //             'Authorization' : props.token
+    //         })
+    //     })
+    // }
 
-    const bandMapper = () => {
+
+        const[bandId, setBandId] = useState('');
+
+        const handleSubmit = (event, bandId) => {
+            event.preventDefault();
+            console.log(props.userId);
+            fetch('http://localhost:3000/fav/createfav',{
+                method: 'POST',
+                body: JSON.stringify({user:{userId: props.userId, bandId: bandId}}),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Authorization': props.token
+                })
+            }) .then(
+                (response) => response.json()
+            ) .then((data) => {
+                console.log(data);
+                // props.updateToken(data.sessionToken);
+            })
+            .catch(err => console.log(err))
+        }
+
+    const bandMapper = () => { //handleSubmit(e, band.id, )
         return props.bands.map((band, index) => {
+            // console.log(band,index);
             return(
                 <tr key={index}>
-                    <th scope="row">{band.id}</th>
+                    {/* <th scope="row">{band.id}</th> */}
                 <td>{band.bandName}</td>
                 <td>{band.url}</td>
                 <td>{band.city}</td>
                 <td>{band.genre}</td>
                 <td>{band.version}</td>
-                <td>{band.comments}</td>
                 <td>
-                    <Button >Add to my bands</Button>
-                    <Button onClick={() => {deleteBand(band)}}>Delete from my bands</Button> 
+                    <Button onClick={(event) => handleSubmit(event, index)} className="addbutton" >Add to my Artists</Button>
                 </td>
 
                 </tr>
             )
         })
     }
+
     return( 
-        <>
-        <h3>My Bands</h3>
-        <hr/>
-        <Table striped>
+        <div className="App">
+        <h3>Artists </h3>
+        <Table  id="table" striped>
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Band Name</th>
+                    {/* <th>#</th> */}
+                    <th>Artist Name</th>
                     <th>URL</th>
                     <th>City</th>
                     <th>Genre</th>
                     <th>Original/Covers/Mix</th>
-                    <th>Comments</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 {bandMapper()}
             </tbody>
         </Table>
-        </>
+        </div>
     )
 }
 
